@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Welcome from './Welcome';
-import FindFlight from './FindFlight';
 import { Link } from 'react-router-dom';
 import { Authenticated } from '../Dtos';
 
@@ -9,12 +8,6 @@ interface HomeProps {
 }
 
 class Home extends Component<HomeProps>{
-
-    componentDidMount(){
-        fetch("http://localhost:5050/api/flights")
-        .then(r => r.json())
-        .then(data => console.log(data));
-    }
 
     render() {
         var links = [];

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Header from './components/Header';
-import Home from './components/Home';
-import Login, { LoginState } from './components/Login'
-import CreateFlight from './components/CreateFlight'
-import FindFlight from './components/FindFlight'
+import Home from './views/Home';
+import Login, { LoginState } from './views/Login'
+import CreateFlight from './views/CreateFlight'
+import FindFlight from './views/FindFlight'
 import { User, Authenticated} from './Dtos'
 import { PrivateRoute, AdminRoute } from './components/RouteExtensions';
 
@@ -26,10 +26,10 @@ class App extends Component<AppProps, AppState> {
       loggedInUser: "",
       users: [
         {
-          Email: "ovidiu.pop@wirtek.com", Password: "test", IsAdmin: true
+          email: "ovidiu.pop@wirtek.com", password: "test", isAdmin: true
         },
         {
-          Email: "test@wirtek.com", Password: "test", IsAdmin: false
+          email: "test@wirtek.com", password: "test", isAdmin: false
         }
       ]
     }
@@ -54,9 +54,9 @@ class App extends Component<AppProps, AppState> {
   }
 
   performAuth(credentials: LoginState) {
-    let user = this.state.users.find(u => u.Email == credentials.email && u.Password == credentials.password);
+    let user = this.state.users.find(u => u.email == credentials.email && u.password == credentials.password);
     if (user) {
-      this.setState({ loggedInUser: user.Email, authenticated: user.IsAdmin ? Authenticated.Admin : Authenticated.User});
+      this.setState({ loggedInUser: user.email, authenticated: user.isAdmin ? Authenticated.Admin : Authenticated.User});
     }
   }
 }

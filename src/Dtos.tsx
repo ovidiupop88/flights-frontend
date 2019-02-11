@@ -1,10 +1,17 @@
 export interface User {
-    Email: string;
-    Password: string;
-    IsAdmin: boolean;
+    email: string;
+    password: string;
+    isAdmin: boolean;
 }
+
 export enum Authenticated {
     Guest = 0,
     User = 1,
     Admin = 2
+}
+
+export interface FlightDto{
+    flightNumber: string,
+    from: string,
+    to: string
 }

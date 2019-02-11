@@ -1,6 +1,6 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom'
-import BaseComponent from './BaseComponent';
+import BaseComponent from '../components/BaseComponent';
 
 interface LoginProps extends RouteComponentProps<any> { authCallback: (credentials: LoginState) => void }
 
