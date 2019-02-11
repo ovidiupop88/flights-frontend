@@ -3,7 +3,7 @@ import BaseComponent from '../components/BaseComponent';
 import FlightList from '../components/FlightList';
 import { FlightDto } from '../Dtos';
 
-interface FindFlightProps {}
+interface FindFlightProps { }
 interface FindFlightState {
     from: string,
     to: string
@@ -23,15 +23,19 @@ class FindFlight extends BaseComponent<FindFlightProps, FindFlightState>{
         this.getData = this.getData.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getData();
     }
 
-    getData(){
+    getData() {
         fetch("http://localhost:5000/api/flights" + "?from=" + this.state.from + "&to=" + this.state.to)
-        .then(r => r.json())
-        .then(data => this.setState({flights: data}))
-        .then(() => console.log(this.state.flights));
+            .then(response => {
+                if (!response.ok)
+                    throw new Error('HTTP error, status = ' + response.status);
+                return response.json()
+            })
+            .then(data => this.setState({ flights: data }))
+            .catch((r) => console.log(r));
     }
 
     render() {
@@ -47,7 +51,7 @@ class FindFlight extends BaseComponent<FindFlightProps, FindFlightState>{
                     <input type="text" className="form-control" id="to" name="to" value={this.state.to} onChange={this.handleChange} />
                 </div>
                 <div className="form-group col-2">
-                        <input type="button" name="search" value="Search" onClick={this.getData} />
+                    <input type="button" name="search" value="Search" onClick={this.getData} />
                 </div>
                 <FlightList flights={this.state.flights} />
             </div>
