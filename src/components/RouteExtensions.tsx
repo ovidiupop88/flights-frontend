@@ -4,7 +4,7 @@ import { Authenticated } from '../Dtos';
 
 interface PrivateRouteProps extends RouteProps { authenticated: Authenticated}
 
-export class PrivateRoute extends Component<PrivateRouteProps, Component>{
+export class PrivateRoute extends Component<PrivateRouteProps>{
     render(){
         if(this.props.authenticated === Authenticated.User || this.props.authenticated === Authenticated.Admin){
             return <Route {...this.props}/>
@@ -13,7 +13,7 @@ export class PrivateRoute extends Component<PrivateRouteProps, Component>{
     }
 }
 
-export class AdminRoute extends Component<PrivateRouteProps, Component>{
+export class AdminRoute extends Component<PrivateRouteProps>{
     render(){
         if(this.props.authenticated === Authenticated.Admin){
             return <Route {...this.props}/>
