@@ -29,13 +29,9 @@ class FindFlight extends BaseComponent<FindFlightProps, FindFlightState>{
 
     getData() {
         fetch("http://localhost:5000/api/flights" + "?from=" + this.state.from + "&to=" + this.state.to)
-            .then(response => {
-                if (!response.ok)
-                    throw new Error('HTTP error, status = ' + response.status);
-                return response.json()
-            })
+            .then(response => response.json())
             .then(data => this.setState({ flights: data }))
-            .catch((r) => console.log(r));
+            .catch(e => console.log(e));
     }
 
     render() {
